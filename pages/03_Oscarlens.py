@@ -327,6 +327,8 @@ fig = px.scatter(
     # trendline="ols"  # adds a linear regression line
 )
 st.plotly_chart(fig, use_container_width=True)
+if st.checkbox("Show full dataset"):
+    st.write(filtered_df2)
 
 st.divider()
 st.header("🌎Countries with their number of awards",divider=True)
@@ -338,7 +340,7 @@ grouped = country_data.groupby(['name', 'award_status']).size().unstack(fill_val
 
 # Optional: reset index to get a clean DataFrame
 grouped = grouped.reset_index()
-st.write(grouped)
+# st.write(grouped)
 
 grouped['total'] = grouped['Winner'] + grouped['Nominee']
 grouped['winner_pct'] = grouped['Winner'] / grouped['total']
@@ -397,3 +399,6 @@ fig.update_geos(
 )
 fig.update_layout(height=800)  # Increase height
 st.plotly_chart(fig, use_container_width=True)
+
+if st.checkbox("Show full dataset"):
+    st.write(grouped)
