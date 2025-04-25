@@ -400,5 +400,6 @@ fig.update_geos(
 fig.update_layout(height=800)  # Increase height
 st.plotly_chart(fig, use_container_width=True)
 
-if st.checkbox("Show full dataset"):
-    st.write(grouped)
+agree= st.checkbox("Show full dataset"):
+if agree:
+     st.write(grouped)
