@@ -1,11 +1,10 @@
 import streamlit as st
 import pandas as pd
-import altair as alt
-import numpy as np
-import requests
 import plotly.express as px
+import plotly.graph_objects as go
 from streamlit_plotly_events import plotly_events
 import streamlit as st
+from geopy.geocoders import Nominatim
 st.set_page_config(layout="wide")
 # Background image with CSS trick
 st.markdown("""
@@ -134,29 +133,45 @@ if option=="None":
     event = st.plotly_chart(fig, use_container_width=True,on_select="rerun",selection_mode="points")
     if event["selection"]["points"]:
         year = event["selection"]["points"][0]["x"]
-        filter_data = df1[df1["year_ceremony"]==year]
-        col1,col2 = st.columns([1,2])
-        bool_counts = filter_data['winner'].value_counts().rename(index={True:"Winner",False:"Not Winner"})
-        subfig1 = px.pie(bool_counts,values=bool_counts.values,names=bool_counts.index,title=f"Percentage of Winners and Not Winners",color_discrete_sequence=px.colors.sequential.Sunsetdark)
-        col1.plotly_chart(subfig1,use_container_width=True)
+        tab1, tab2 = st.tabs(["More details", "Award names"])
+        with tab1:
+            filter_data = df1[df1["year_ceremony"]==year]
+            col1,col2 = st.columns([1,2])
+            bool_counts = filter_data['winner'].value_counts().rename(index={True:"Winner",False:"Not Winner"})
+            subfig1 = px.pie(bool_counts,values=bool_counts.values,names=bool_counts.index,title=f"Percentage of Winners and Not Winners",color_discrete_sequence=px.colors.sequential.Sunsetdark)
+            col1.plotly_chart(subfig1,use_container_width=True)
 
-        winner_films = filter_data[filter_data["winner"]==True]
-        movie_counts = winner_films['film'].value_counts().reset_index()
-        movie_counts.columns = ['film','count']
-        fig = px.bar(
-            movie_counts,
-            x='count',
-            y='film',
-            title="Winning Films by Number of Appearances",
-            labels={'film': 'Film', 'count': 'Count'},
-            color='count',
-            color_continuous_scale='Viridis'
-        )
+            winner_films = filter_data[filter_data["winner"]==True]
+            movie_counts = winner_films['film'].value_counts().reset_index()
+            movie_counts.columns = ['film','count']
+            fig = px.bar(
+                movie_counts,
+                x='count',
+                y='film',
+                title="Winning Films by Number of Appearances",
+                labels={'film': 'Film', 'count': 'Count'},
+                color='count',
+                color_continuous_scale='Viridis'
+            )
 
-        fig.update_layout(xaxis_tickangle=-45)  # Tilt x-axis labels if long
+            # fig.update_layout(xaxis_tickangle=-45)  # Tilt x-axis labels if long
 
-        # Show in Streamlit
-        col2.plotly_chart(fig)
+            # Show in Streamlit
+            col2.plotly_chart(fig)
+
+        with tab2:
+            filter_data = df1[df1["year_ceremony"]==year]
+            mylist = filter_data["canon_category"].unique().tolist()
+            mylist.sort()
+            earliest = []
+            for item in mylist:
+                earliest.append(df1[df1['canon_category']==item]["year_ceremony"].min())
+            st.markdown(f"#### <em>The following awards were given in \"{year}\":</em>",unsafe_allow_html=True)
+            # for count,item in enumerate(mylist):
+            #     earliest = df1[df1['canon_category']==item]["year_ceremony"].min()
+            #     st.markdown(f"##### <em>{count+1}) {item.capitalize()} - First introduced in {earliest}</em>",unsafe_allow_html=True)
+            table_df = pd.DataFrame({"Award name":mylist,"First awarded":earliest})
+            st.table(table_df)
 
 
 
@@ -186,15 +201,47 @@ else:
 
     if event["selection"]["points"]:
         year = event["selection"]["points"][0]["x"]
-        filter_data = df1[df1["year_ceremony"]==year]
-        filter_data = filter_data[filter_data["coarse_category"]==option]
-        mylist = filter_data["canon_category"].unique().tolist()
-        mylist.sort()
-        st.markdown(f"#### <em>The following awards were given in \"{year}\" for \"{option}\" category:</em>",unsafe_allow_html=True)
-        for count,item in enumerate(mylist):
-            earliest = df1[df1['canon_category']==item]["year_ceremony"].min()
-            st.markdown(f"#### <em>{count+1}) {item.capitalize()} - First introduced in {earliest}</em>",unsafe_allow_html=True)
+        tab1, tab2 = st.tabs(["More details", "Award names"])
+        with tab1:
+            filter_data = df1[df1["year_ceremony"]==year]
+            filter_data = filter_data[filter_data["coarse_category"]==option]
+            col1,col2 = st.columns([1,2])
+            bool_counts = filter_data['winner'].value_counts().rename(index={True:"Winner",False:"Not Winner"})
+            subfig1 = px.pie(bool_counts,values=bool_counts.values,names=bool_counts.index,title=f"Percentage of Winners and Not Winners",color_discrete_sequence=px.colors.sequential.Sunsetdark)
+            col1.plotly_chart(subfig1,use_container_width=True)
 
+            winner_films = filter_data[filter_data["winner"]==True]
+            movie_counts = winner_films['film'].value_counts().reset_index()
+            movie_counts.columns = ['film','count']
+            fig = px.bar(
+                movie_counts,
+                x='count',
+                y='film',
+                title="Winning Films by Number of Appearances",
+                labels={'film': 'Film', 'count': 'Count'},
+                color='count',
+                color_continuous_scale='Viridis'
+            )
+
+            # fig.update_layout(xaxis_tickangle=-45)  # Tilt x-axis labels if long
+
+            # Show in Streamlit
+            col2.plotly_chart(fig)
+
+        with tab2:
+            filter_data = df1[df1["year_ceremony"]==year]
+            filter_data = filter_data[filter_data["coarse_category"]==option]
+            mylist = filter_data["canon_category"].unique().tolist()
+            mylist.sort()
+            earliest = []
+            for item in mylist:
+                earliest.append(df1[df1['canon_category']==item]["year_ceremony"].min())
+            st.markdown(f"#### <em>The following awards were given in \"{year}\" for \"{option}\" category:</em>",unsafe_allow_html=True)
+            # for count,item in enumerate(mylist):
+            #     earliest = df1[df1['canon_category']==item]["year_ceremony"].min()
+            #     st.markdown(f"#### <em>{count+1}) {item.capitalize()} - First introduced in {earliest}</em>",unsafe_allow_html=True)
+            table_df = pd.DataFrame({"Award name":mylist,"First awarded":earliest})
+            st.table(table_df)
 
     
 
@@ -208,25 +255,147 @@ else:
 st.divider()
 st.header("🌟Rating Distribution of Oscar Winning Films",divider=True)
 
-winner_count = df1[df1['winner']==True]['film'].nunique()
-winner_films = df1[df1['winner']==True]['film'].unique()
-picture_winners = df1[(df1['winner']==True)&(df1['canon_category']=="BEST PICTURE")]['film'].unique()
-picture_count = df1[(df1['winner']==True)&(df1['canon_category']=="BEST PICTURE")]['film'].nunique()
-direction_count = df1[(df1['winner']==True)&(df1['coarse_category']=="Directing")]['film'].nunique()
-writing_count = df1[(df1['winner']==True)&(df1['coarse_category']=="Writing")]['film'].nunique()
-ratings = []
-# for film in picture_winners:
-#     url = f'http://www.omdbapi.com/?apikey=c0a886a6&t={film}'
-#     response = requests.get(url)
-#     data = response.json()
-#     ratings.append(data['imdbRating'])
+# winner_count = df1[df1['winner']==True]['film'].nunique()
+# winner_films = df1[df1['winner']==True]['film'].unique()
+# picture_winners = df1[(df1['winner']==True)&(df1['canon_category']=="BEST PICTURE")]['film'].unique()
+# picture_count = df1[(df1['winner']==True)&(df1['canon_category']=="BEST PICTURE")]['film'].nunique()
+# direction_count = df1[(df1['winner']==True)&(df1['coarse_category']=="Directing")]
+# st.write(direction_count)
+# writing_count = df1[(df1['winner']==True)&(df1['coarse_category']=="Writing")]['film'].nunique()
+# ratings = []
+# # for film in picture_winners:
+# #     url = f'http://www.omdbapi.com/?apikey=c0a886a6&t={film}'
+# #     response = requests.get(url)
+# #     data = response.json()
+# #     ratings.append(data['imdbRating'])
 
-# combo = np.column_stack((picture_winners,ratings))
-# win_rating = pd.DataFrame(combo,columns=['film','rating'])
-# st.write(win_rating)
+# # combo = np.column_stack((picture_winners,ratings))
+# # win_rating = pd.DataFrame(combo,columns=['film','rating'])
+# # st.write(win_rating)
 
-st.markdown(f"### <em>\"The number of unique film winners : {writing_count}\"</em>", unsafe_allow_html=True)
+plot_type = st.selectbox("Choose plot type", ["Box Plot", "Violin Plot"])
+df2 = pd.read_csv("archive/oscar_rate_rev.csv")
+filtered = df2[["Title","Rating","category"]]
+if plot_type == "Box Plot":
+        fig = px.box(
+            filtered,
+            x="category",
+            y="Rating",
+            color="category",
+            points="all",
+            hover_data=["Title"],
+            title="Box Plot of Movie Ratings"
+        )
+        fig.update_layout(
+            xaxis_title="Category"
+        )
+else:
+        fig = px.violin(
+            filtered,
+            x="category",
+            y="Rating",
+            color="category",
+            box=True,         # show embedded boxplot
+            points="all",     # show all data points
+            hover_data=["Title"],
+            title="Violin Plot of Movie Ratings"
+        )
+        fig.update_layout(
+            xaxis_title="Category"
+        )
+
+fig.update_layout(yaxis_title="Rating")
+st.plotly_chart(fig, use_container_width=True)
+
+# st.markdown(f"### <em>\"The number of unique film winners : {writing_count}\"</em>", unsafe_allow_html=True)
 
 st.divider()
-st.header("Best Picture Winners Budget vs Box Office",divider=True)
+st.header("💸Best Picture Winners Budget vs Box Office",divider=True)
 
+filtered_df2 = df2[(df2["Budget"]!=0)&(df2["Box Office"]!=0)]
+
+st.write(filtered_df2)
+
+fig = px.scatter(
+    filtered_df2,
+    x="Budget",
+    y="Box Office",
+    log_x=True, log_y=True,
+    symbol="category",
+    color="category",
+    hover_data=["Title"],  # optional: show movie names
+    title="Correlation between Movie Budget and Revenue",
+    labels={"Budget": "Budget ($)", "Box Office": "Revenue ($)"},
+    # trendline="ols"  # adds a linear regression line
+)
+st.plotly_chart(fig, use_container_width=True)
+
+st.divider()
+st.header("🌎Countries with their number of awards",divider=True)
+country_data = df1[(df1['canon_category']=="INTERNATIONAL FEATURE FILM")]
+country_data['award_status'] = country_data['winner'].map({True: 'Winner', False: 'Nominee'})
+# country_counts = country_data['name'].value_counts().reset_index()
+# country_counts.columns = ['country', 'count']
+grouped = country_data.groupby(['name', 'award_status']).size().unstack(fill_value=0)
+
+# Optional: reset index to get a clean DataFrame
+grouped = grouped.reset_index()
+st.write(grouped)
+
+grouped['total'] = grouped['Winner'] + grouped['Nominee']
+grouped['winner_pct'] = grouped['Winner'] / grouped['total']
+
+# # Optional: Geocode countries to lat/lon
+# if 'lat' not in grouped.columns or 'lon' not in grouped.columns:
+#     geolocator = Nominatim(user_agent="streamlit_app")
+
+#     @st.cache_data(show_spinner=False)
+#     def geocode_country(country):
+#         try:
+#             location = geolocator.geocode(country)
+#             return location.latitude, location.longitude
+#         except:
+#             return None, None
+
+#     st.info("Geocoding country names... This runs once and caches.")
+#     grouped[['lat', 'lon']] = grouped['name'].apply(lambda c: pd.Series(geocode_country(c)))
+
+# # Drop countries that failed geocoding
+# grouped = grouped.dropna(subset=['lat', 'lon'])
+
+# # Create Bubble Map with hover info showing both winners and nominees
+# fig = go.Figure(go.Scattergeo(
+#     lon=grouped['lon'],
+#     lat=grouped['lat'],
+#     text=grouped.apply(lambda row: f"<b>{row['name']}</b><br>🏆 Winners: {row['Winner']}<br>🎖 Nominees: {row['Nominee']}", axis=1),
+#     marker=dict(
+#         size=grouped['total'] * 2,  # Adjust size scale as needed
+#         color=grouped['winner_pct'],
+#         colorscale='Viridis',
+#         colorbar=dict(title='% Winners'),
+#         sizemode='area',
+#         line=dict(width=0.5, color='white'),
+#         showscale=True
+#     )
+# ))
+
+# fig.update_layout(
+#     title='Award Winners and Nominees by Country (Bubble Map)',
+#     geo=dict(
+#         showframe=False,
+#         showcoastlines=True,
+#         projection_type='natural earth'
+#     ),
+#     margin=dict(l=0, r=0, t=40, b=0)
+# )
+
+# st.plotly_chart(fig, use_container_width=True)
+fig = px.scatter_geo(grouped, locations="name",locationmode='country names', color="winner_pct",hover_data=['Winner', 'Nominee'],
+                     hover_name="name", size="total",
+                     projection="natural earth",color_continuous_scale='Viridis',
+                     title='Award Winners and Nominees by Country')
+fig.update_geos(
+    showcountries=True
+)
+fig.update_layout(height=800)  # Increase height
+st.plotly_chart(fig, use_container_width=True)

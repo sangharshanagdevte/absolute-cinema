@@ -22,13 +22,15 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title(headline)
+st.title(headline + " - Behind the scenes of Movie Industry")
 st.markdown("""
 """, unsafe_allow_html=False)
 
+st.subheader("Introduction")
+
 # Adding a brief introduction about the project in bold
 st.markdown("""
-**In the dynamic realm of pogg, knowing what resonates with audiences is crucial. Our data-driven exploration helps us uncover trends and insights driving musical achievements. With innovative analytics and visualization, we navigate through genre preferences, artist popularity, and emerging trends.**
+**In the dynamic realm of movie, knowing what resonates with audiences is crucial. Our data-driven exploration helps us uncover trends and insights driving musical achievements. With innovative analytics and visualization, we navigate through genre preferences, artist popularity, and emerging trends.**
 """, unsafe_allow_html=False)
 
 # TODO: Homepage components

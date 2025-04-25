@@ -1,0 +1,404 @@
+Title,Rating,Budget,Box Office,category
+Wings,7.5,2000000,3600000,picture
+The Broadway Melody,5.6,379000,4358000,picture
+All Quiet on the Western Front,7.8,20000000,0,picture
+Cimarron,5.8,1433000,1383000,picture
+Grand Hotel,7.3,700000,2594000,picture
+Cavalcade,5.8,1180280,7630000,picture
+It Happened One Night,8.1,325000,4500000,picture
+Mutiny on the Bounty,7.6,1950000,4460000,picture
+The Great Ziegfeld,6.6,2183000,4673000,picture
+The Life of Emile Zola,7.1,0,0,picture
+You Can't Take It with You,7.8,1644736,7433101,picture
+Gone with the Wind,8.2,4000000,402352579,picture
+Rebecca,8.1,0,0,picture
+How Green Was My Valley,7.7,1250000,6000000,picture
+Mrs. Miniver,7.6,1344000,13500000,picture
+Casablanca,8.5,0,0,picture
+Going My Way,7.0,0,16300000,picture
+The Lost Weekend,7.9,1250000,11000000,picture
+The Best Years of Our Lives,8.1,2100000,23650000,picture
+Gentleman's Agreement,7.2,2000000,7800000,picture
+Hamlet,7.7,2000000,1568749,picture
+All the King's Men,6.1,0,0,picture
+All about Eve,8.2,1400000,8400000,picture
+An American in Paris,7.1,22000000,26570463,picture
+The Greatest Show on Earth,6.5,4000000,36000000,picture
+From Here to Eternity,7.6,1650000,30500000,picture
+On the Waterfront,8.1,910000,960000,picture
+Marty,7.7,343000,3000000,picture
+Around the World in 80 Days,5.9,0,0,picture
+The Bridge on the River Kwai,8.1,3000000,44908000,picture
+Gigi,6.6,3319355,13200000,picture
+Ben-Hur,8.1,100000000,94061311,picture
+The Apartment,8.3,3000000,25000000,picture
+West Side Story,7.6,100000000,76016171,picture
+Lawrence of Arabia,8.3,15000000,69995385,picture
+Tom Jones,6.4,1000000,37600000,picture
+My Fair Lady,7.7,17000000,72661442,picture
+The Sound of Music,8.1,8200000,286214286,picture
+A Man for All Seasons,7.7,0,0,picture
+In the Heat of the Night,7.9,2000000,27379978,picture
+Oliver!,7.4,0,0,picture
+Midnight Cowboy,7.8,3600000,44785053,picture
+Patton,7.9,12000000,89800000,picture
+The French Connection,7.7,1800000,41200000,picture
+The Godfather,9.2,6000000,245066411,picture
+The Sting,8.3,5500000,159616327,picture
+The Godfather Part II,9.0,13000000,102600000,picture
+One Flew over the Cuckoo's Nest,8.7,3000000,108981275,picture
+Rocky,8.1,1000000,225253184,picture
+Annie Hall,7.9,4000000,38288028,picture
+The Deer Hunter,8.1,15000000,49000000,picture
+Kramer vs. Kramer,7.8,8000000,106260000,picture
+Ordinary People,7.7,0,0,picture
+Chariots of Fire,7.1,5500000,58972904,picture
+Gandhi,8.0,22000000,77737889,picture
+Terms of Endearment,7.4,8000000,108423749,picture
+Amadeus,8.4,18000000,90007557,picture
+Out of Africa,7.1,31000000,227514205,picture
+Platoon,8.1,6000000,138530565,picture
+The Last Emperor,7.7,23800000,44000000,picture
+Rain Man,8.0,25000000,354825435,picture
+Driving Miss Daisy,7.3,0,0,picture
+Dances With Wolves,8.0,22000000,424208848,picture
+The Silence of the Lambs,8.6,19000000,272742922,picture
+Unforgiven,8.2,14400000,159157447,picture
+Schindler's List,9.0,22000000,321365567,picture
+Forrest Gump,8.8,55000000,677387716,picture
+Braveheart,8.3,72000000,213216216,picture
+The English Patient,7.4,27000000,231976425,picture
+Titanic,7.9,200000000,2264162353,picture
+Shakespeare in Love,7.1,25000000,289300000,picture
+American Beauty,8.3,15000000,356296601,picture
+Gladiator,8.5,0,900000,picture
+A Beautiful Mind,8.2,58000000,316800000,picture
+Chicago,7.2,45000000,306776732,picture
+The Lord of the Rings: The Return of the King,9.0,94000000,1118888979,picture
+Million Dollar Baby,8.1,30000000,216763646,picture
+Crash,7.7,6500000,98400000,picture
+The Departed,8.5,90000000,291465000,picture
+No Country for Old Men,8.2,25000000,171627166,picture
+Slumdog Millionaire,8.0,15000000,378400000,picture
+The Hurt Locker,7.5,15000000,49259766,picture
+The King's Speech,8.0,15000000,414211549,picture
+The Artist,7.8,15000000,133432856,picture
+Argo,7.7,44500000,232300000,picture
+12 Years a Slave,8.1,20000000,187000000,picture
+Birdman or (The Unexpected Virtue of Ignorance),7.7,18000000,103215094,picture
+Spotlight,8.1,20000000,98690254,picture
+Moonlight,7.4,4000000,65046687,picture
+The Shape of Water,7.3,19500000,195300000,picture
+Green Book,8.2,23000000,321752656,picture
+Parasite,8.5,800000,7000000,picture
+Nomadland,7.3,5000000,39458207,picture
+CODA,8.0,10000000,1905058,picture
+Everything Everywhere All at Once,7.8,25000000,139200000,picture
+Oppenheimer,8.3,100000000,952000000,picture
+Anora,7.5,6000000,56286295,picture
+Two Arabian Knights,6.7,0,0,directing
+7th Heaven,5.3,1300000,2500000,directing
+The Divine Lady,6.2,0,0,directing
+All Quiet on the Western Front,7.8,20000000,0,directing
+Skippy,6.3,0,0,directing
+Bad Girl,6.4,0,0,directing
+Cavalcade,5.8,1180280,7630000,directing
+Viva Villa!,6.3,0,0,directing
+It Happened One Night,8.1,325000,4500000,directing
+The Lives of a Bengal Lancer,7.0,0,3000000,directing
+The Informer,6.6,60000000,2927708,directing
+The Charge of the Light Brigade,7.0,0,0,directing
+Mr. Deeds Goes to Town,7.8,0,0,directing
+In Old Chicago,6.7,10000000,0,directing
+The Awful Truth,7.7,600000,3000000,directing
+You Can't Take It with You,7.8,1644736,7433101,directing
+Gone with the Wind,8.2,4000000,402352579,directing
+The Grapes of Wrath,8.1,800000,1591000,directing
+How Green Was My Valley,7.7,1250000,6000000,directing
+Mrs. Miniver,7.6,1344000,13500000,directing
+Casablanca,8.5,0,0,directing
+Going My Way,7.0,0,16300000,directing
+The Lost Weekend,7.9,1250000,11000000,directing
+The Best Years of Our Lives,8.1,2100000,23650000,directing
+Gentleman's Agreement,7.2,2000000,7800000,directing
+The Treasure of the Sierra Madre,8.2,3800000,4307000,directing
+A Letter to Three Wives,7.7,0,0,directing
+All about Eve,8.2,1400000,8400000,directing
+A Place in the Sun,7.7,2300000,7000000,directing
+The Quiet Man,7.7,1750000,3800000,directing
+From Here to Eternity,7.6,1650000,30500000,directing
+On the Waterfront,8.1,910000,960000,directing
+Marty,7.7,343000,3000000,directing
+Giant,7.6,5400000,32855818,directing
+The Bridge on the River Kwai,8.1,3000000,44908000,directing
+Gigi,6.6,3319355,13200000,directing
+Ben-Hur,8.1,100000000,94061311,directing
+The Apartment,8.3,3000000,25000000,directing
+West Side Story,7.6,100000000,76016171,directing
+Lawrence of Arabia,8.3,15000000,69995385,directing
+Tom Jones,6.4,1000000,37600000,directing
+My Fair Lady,7.7,17000000,72661442,directing
+The Sound of Music,8.1,8200000,286214286,directing
+A Man for All Seasons,7.7,0,0,directing
+The Graduate,8.0,3000000,104945305,directing
+Oliver!,7.4,0,0,directing
+Midnight Cowboy,7.8,3600000,44785053,directing
+Patton,7.9,12000000,89800000,directing
+The French Connection,7.7,1800000,41200000,directing
+Cabaret,7.8,4600000,42800000,directing
+The Sting,8.3,5500000,159616327,directing
+The Godfather Part II,9.0,13000000,102600000,directing
+One Flew over the Cuckoo's Nest,8.7,3000000,108981275,directing
+Rocky,8.1,1000000,225253184,directing
+Annie Hall,7.9,4000000,38288028,directing
+The Deer Hunter,8.1,15000000,49000000,directing
+Kramer vs. Kramer,7.8,8000000,106260000,directing
+Ordinary People,7.7,0,0,directing
+Reds,7.3,35000000,40382659,directing
+Gandhi,8.0,22000000,77737889,directing
+Terms of Endearment,7.4,8000000,108423749,directing
+Amadeus,8.4,18000000,90007557,directing
+Out of Africa,7.1,31000000,227514205,directing
+Platoon,8.1,6000000,138530565,directing
+The Last Emperor,7.7,23800000,44000000,directing
+Rain Man,8.0,25000000,354825435,directing
+Born on the Fourth of July,7.2,14000000,161001698,directing
+Dances With Wolves,8.0,22000000,424208848,directing
+The Silence of the Lambs,8.6,19000000,272742922,directing
+Unforgiven,8.2,14400000,159157447,directing
+Schindler's List,9.0,22000000,321365567,directing
+Forrest Gump,8.8,55000000,677387716,directing
+Braveheart,8.3,72000000,213216216,directing
+The English Patient,7.4,27000000,231976425,directing
+Titanic,7.9,200000000,2264162353,directing
+Saving Private Ryan,8.6,70000000,481840909,directing
+American Beauty,8.3,15000000,356296601,directing
+Traffic,7.6,48000000,207500000,directing
+A Beautiful Mind,8.2,58000000,316800000,directing
+The Pianist,8.5,35000000,120098945,directing
+The Lord of the Rings: The Return of the King,9.0,94000000,1118888979,directing
+Million Dollar Baby,8.1,30000000,216763646,directing
+Brokeback Mountain,7.7,14000000,178043761,directing
+The Departed,8.5,90000000,291465000,directing
+No Country for Old Men,8.2,25000000,171627166,directing
+Slumdog Millionaire,8.0,15000000,378400000,directing
+The Hurt Locker,7.5,15000000,49259766,directing
+The King's Speech,8.0,15000000,414211549,directing
+The Artist,7.8,15000000,133432856,directing
+Life of Pi,7.9,120000000,609016565,directing
+Gravity,7.7,105000000,723192705,directing
+Birdman or (The Unexpected Virtue of Ignorance),7.7,18000000,103215094,directing
+The Revenant,8.0,135000000,532950503,directing
+La La Land,8.0,30000000,509183536,directing
+The Shape of Water,7.3,19500000,195300000,directing
+Roma,7.7,15000000,1140769,directing
+Parasite,8.5,800000,7000000,directing
+Nomadland,7.3,5000000,39458207,directing
+The Power of the Dog,6.8,0,0,directing
+Everything Everywhere All at Once,7.8,25000000,139200000,directing
+Oppenheimer,8.3,100000000,952000000,directing
+Anora,7.5,6000000,56286295,directing
+7th Heaven,5.3,1300000,2500000,writing
+Underworld,7.0,22000000,95708457,writing
+The Patriot,7.2,110000000,215294342,writing
+The Big House,7.1,0,0,writing
+Cimarron,5.8,1433000,1383000,writing
+The Dawn Patrol,7.5,0,0,writing
+Bad Girl,6.4,0,0,writing
+The Champ,6.8,0,30441738,writing
+Little Women,7.8,40000000,216600000,writing
+One Way Passage,7.5,350000,1108000,writing
+It Happened One Night,8.1,325000,4500000,writing
+Manhattan Melodrama,7.1,0,0,writing
+The Scoundrel,6.2,0,0,writing
+The Informer,6.6,60000000,2927708,writing
+The Story of Louis Pasteur,7.3,0,0,writing
+A Star Is Born,7.6,6000000,80000000,writing
+The Life of Emile Zola,7.1,0,0,writing
+Boys Town,7.2,0,0,writing
+Pygmalion,7.7,2000,0,writing
+Mr. Smith Goes to Washington,8.1,1500000,9600000,writing
+Gone with the Wind,8.2,4000000,402352579,writing
+The Great McGinty,7.2,0,0,writing
+"Arise, My Love",6.8,0,0,writing
+The Philadelphia Story,7.8,0,0,writing
+Citizen Kane,8.3,839727,23218000,writing
+Here Comes Mr. Jordan,7.5,0,0,writing
+The Invaders,8.0,0,0,writing
+Woman of the Year,7.1,1000000,2700000,writing
+Mrs. Miniver,7.6,1344000,13500000,writing
+The Human Comedy,7.0,1000000,3900000,writing
+Princess O'Rourke,6.7,0,0,writing
+Casablanca,8.5,0,0,writing
+Going My Way,7.0,0,16300000,writing
+Wilson,5.8,0,653951,writing
+The House on 92nd Street,6.6,0,2500000,writing
+Marie-Louise,6.8,0,0,writing
+The Lost Weekend,7.9,1250000,11000000,writing
+Vacation from Marriage,7.1,0,0,writing
+The Seventh Veil,6.7,0,0,writing
+The Best Years of Our Lives,8.1,2100000,23650000,writing
+Miracle on 34th Street,7.9,0,0,writing
+The Bachelor and the Bobby-Soxer,7.2,1961000,5550000,writing
+The Search,7.8,0,0,writing
+The Treasure of the Sierra Madre,8.2,3800000,4307000,writing
+The Stratton Story,7.1,0,0,writing
+A Letter to Three Wives,7.7,0,0,writing
+Battleground,7.4,0,0,writing
+Panic in the Streets,7.2,0,0,writing
+All about Eve,8.2,1400000,8400000,writing
+Sunset Blvd.,5.2,0,0,writing
+Seven Days to Noon,7.0,0,0,writing
+A Place in the Sun,7.7,2300000,7000000,writing
+An American in Paris,7.1,22000000,26570463,writing
+The Greatest Show on Earth,6.5,4000000,36000000,writing
+The Bad and the Beautiful,7.8,1558000,3373000,writing
+The Lavender Hill Mob,7.5,0,0,writing
+Roman Holiday,8.0,1500000,12000000,writing
+From Here to Eternity,7.6,1650000,30500000,writing
+Titanic,7.9,200000000,2264162353,writing
+Broken Lance,6.9,0,0,writing
+The Country Girl,7.2,0,0,writing
+On the Waterfront,8.1,910000,960000,writing
+Love Me or Leave Me,7.1,0,0,writing
+Marty,7.7,343000,3000000,writing
+Interrupted Melody,6.7,0,0,writing
+The Brave One,6.7,70000000,69766619,writing
+Around the World in 80 Days,5.9,0,0,writing
+The Red Balloon,8.1,0,0,writing
+The Bridge on the River Kwai,8.1,3000000,44908000,writing
+Designing Woman,6.7,0,0,writing
+Gigi,6.6,3319355,13200000,writing
+The Defiant Ones,7.6,0,0,writing
+Room at the Top,7.5,0,0,writing
+Pillow Talk,7.4,1600000,18750000,writing
+Elmer Gantry,7.7,3000000,10400000,writing
+The Apartment,8.3,3000000,25000000,writing
+Judgment at Nuremberg,8.3,3000000,10000000,writing
+Splendor in the Grass,7.7,0,0,writing
+To Kill a Mockingbird,8.3,2000000,13129846,writing
+Divorce--Italian Style,7.9,0,0,writing
+Tom Jones,6.4,1000000,37600000,writing
+How the West Was Won,7.1,15000000,50000000,writing
+Becket,7.8,0,9100000,writing
+Father Goose,7.3,0,12500000,writing
+Doctor Zhivago,7.9,11000000,111858363,writing
+Darling,7.0,0,0,writing
+A Man for All Seasons,7.7,0,0,writing
+A Man and a Woman,7.5,0,228000,writing
+In the Heat of the Night,7.9,2000000,27379978,writing
+Guess Who's Coming to Dinner,7.8,4000000,56666667,writing
+The Lion in Winter,7.9,0,0,writing
+The Producers,7.5,45000000,38058335,writing
+Midnight Cowboy,7.8,3600000,44785053,writing
+Butch Cassidy and the Sundance Kid,8.0,6000000,102308889,writing
+M*A*S*H,7.3,3500000,81600000,writing
+Patton,7.9,12000000,89800000,writing
+The French Connection,7.7,1800000,41200000,writing
+The Hospital,7.1,0,0,writing
+The Godfather,9.2,6000000,245066411,writing
+The Candidate,7.0,1600000,2500000,writing
+The Exorcist,8.1,12000000,441306145,writing
+The Sting,8.3,5500000,159616327,writing
+Chinatown,8.1,6000000,30000000,writing
+The Godfather Part II,9.0,13000000,102600000,writing
+Dog Day Afternoon,8.0,1800000,46665856,writing
+One Flew over the Cuckoo's Nest,8.7,3000000,108981275,writing
+All the President's Men,7.9,8500000,70600000,writing
+Network,8.1,3800000,23700000,writing
+Julia,8.3,7840000,20700000,writing
+Annie Hall,7.9,4000000,38288028,writing
+Midnight Express,7.5,2300000,35000000,writing
+Coming Home,7.3,0,236085820,writing
+Kramer vs. Kramer,7.8,8000000,106260000,writing
+Breaking Away,7.7,2300000,20000000,writing
+Ordinary People,7.7,0,0,writing
+Melvin and Howard,6.8,0,0,writing
+On Golden Pond,7.6,0,0,writing
+Chariots of Fire,7.1,5500000,58972904,writing
+Missing,7.1,7000000,45100756,writing
+Gandhi,8.0,22000000,77737889,writing
+Terms of Endearment,7.4,8000000,108423749,writing
+Tender Mercies,7.3,4500000,8400000,writing
+Amadeus,8.4,18000000,90007557,writing
+Places in the Heart,7.4,9500000,34901614,writing
+Out of Africa,7.1,31000000,227514205,writing
+Witness,7.4,12000000,116100000,writing
+A Room with a View,7.2,0,0,writing
+Hannah and Her Sisters,7.8,6400000,40084041,writing
+The Last Emperor,7.7,23800000,44000000,writing
+Moonstruck,7.2,15000000,122100000,writing
+Dangerous Liaisons,7.5,0,0,writing
+Rain Man,8.0,25000000,354825435,writing
+Driving Miss Daisy,7.3,0,0,writing
+Dead Poets Society,8.1,16400000,235900000,writing
+Dances With Wolves,8.0,22000000,424208848,writing
+Ghost,7.1,22000000,505000000,writing
+The Silence of the Lambs,8.6,19000000,272742922,writing
+Thelma & Louise,6.9,0,0,writing
+Howards End,7.4,8000000,26126837,writing
+The Crying Game,7.2,3705538,62548947,writing
+Schindler's List,9.0,22000000,321365567,writing
+The Piano,7.5,0,0,writing
+Forrest Gump,8.8,55000000,677387716,writing
+Pulp Fiction,8.9,8000000,213928762,writing
+Sense and Sensibility,7.7,0,0,writing
+The Usual Suspects,8.5,6000000,23300000,writing
+Sling Blade,8.0,1200000,34100000,writing
+Fargo,8.1,7000000,60611975,writing
+L.A. Confidential,8.2,35000000,126216940,writing
+Good Will Hunting,8.3,10000000,225900000,writing
+Gods and Monsters,7.3,10000000,6451628,writing
+Shakespeare in Love,7.1,25000000,289300000,writing
+The Cider House Rules,7.4,24000000,88500000,writing
+American Beauty,8.3,15000000,356296601,writing
+Traffic,7.6,48000000,207500000,writing
+Almost Famous,7.9,60000000,47386287,writing
+A Beautiful Mind,8.2,58000000,316800000,writing
+Gosford Park,7.2,19800000,87754044,writing
+The Pianist,8.5,35000000,120098945,writing
+Talk to Her,7.9,0,64803131,writing
+The Lord of the Rings: The Return of the King,9.0,94000000,1118888979,writing
+Lost in Translation,7.7,4000000,119723856,writing
+Sideways,7.5,16000000,109502303,writing
+Eternal Sunshine of the Spotless Mind,8.3,20000000,72258126,writing
+Brokeback Mountain,7.7,14000000,178043761,writing
+Crash,7.7,6500000,98400000,writing
+The Departed,8.5,90000000,291465000,writing
+Little Miss Sunshine,7.8,8000000,100523181,writing
+No Country for Old Men,8.2,25000000,171627166,writing
+Juno,7.4,7500000,232372681,writing
+Slumdog Millionaire,8.0,15000000,378400000,writing
+Milk,7.5,20000000,54600000,writing
+Precious: Based on the Novel 'Push' by Sapphire,N/A,10000000,47536959,writing
+The Hurt Locker,7.5,15000000,49259766,writing
+The Social Network,7.8,40000000,224920315,writing
+The King's Speech,8.0,15000000,414211549,writing
+The Descendants,7.3,20000000,177200000,writing
+Midnight in Paris,7.6,17000000,151119219,writing
+Argo,7.7,44500000,232300000,writing
+Django Unchained,8.5,100000000,425368238,writing
+12 Years a Slave,8.1,20000000,187000000,writing
+Her,8.0,23000000,47351251,writing
+The Imitation Game,8.0,14000000,233555708,writing
+Birdman or (The Unexpected Virtue of Ignorance),7.7,18000000,103215094,writing
+The Big Short,7.8,28000000,133346506,writing
+Spotlight,8.1,20000000,98690254,writing
+Moonlight,7.4,4000000,65046687,writing
+Manchester by the Sea,7.8,9000000,79000000,writing
+Call Me by Your Name,7.8,3500000,43143046,writing
+Get Out,7.8,4500000,255407969,writing
+BlacKkKlansman,7.5,15000000,93411426,writing
+Green Book,8.2,23000000,321752656,writing
+Jojo Rabbit,7.9,14000000,82468705,writing
+Parasite,8.5,800000,7000000,writing
+The Father,8.2,6000000,21029340,writing
+Promising Young Woman,7.5,10000000,20379604,writing
+CODA,8.0,10000000,1905058,writing
+Belfast,7.2,11000000,49158343,writing
+Women Talking,6.9,20000000,7589419,writing
+Everything Everywhere All at Once,7.8,25000000,139200000,writing
+American Fiction,7.5,16000000,22483370,writing
+Anatomy of a Fall,7.7,6700000,35634133,writing
+Conclave,7.4,20000000,115657988,writing
+Anora,7.5,6000000,56286295,writing
