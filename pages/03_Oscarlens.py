@@ -2,9 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from streamlit_plotly_events import plotly_events
 import streamlit as st
-from geopy.geocoders import Nominatim
 st.set_page_config(layout="wide")
 # Background image with CSS trick
 st.markdown("""
