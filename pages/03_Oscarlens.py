@@ -101,7 +101,7 @@ df1['coarse_category'] = df1['canon_category'].map(coarse_label_map)
 option="None"
 # Streamlit UI
 st.title("🎭 :orange[Oscarlens]")
-st.header("📈 Number of Award Categories Per Year",divider=True)
+st.header("📈 Growth in Number of Award Categories",divider=True)
 st.write("")
 st.markdown("### <em>\" The number of Oscar award categories has definitely evolved since the very first Academy Awards in 1928, and the rise reflects how the film industry has grown in complexity, diversity, and technological sophistication.\"</em>", unsafe_allow_html=True)
 st.write("")
@@ -372,7 +372,7 @@ if st.checkbox("Show full dataset",key="box1"):
 # st.markdown(f"### <em>\"The number of unique film winners : {writing_count}\"</em>", unsafe_allow_html=True)
 
 st.divider()
-st.header("💸Best Picture Winners Budget vs Box Office",divider=True)
+st.header("💸Oscar Winners : Budget vs Box Office",divider=True)
 
 filtered_df2 = df2[(df2["Budget"]!=0)&(df2["Box Office"]!=0)]
 # filtered_df2 = filtered_df2[filtered_df2['category']=="picture"]
@@ -404,7 +404,7 @@ with tab1:
     st.plotly_chart(fig, use_container_width=True)
 
 with tab2:
-    use_log_y = st.checkbox("Apply log on Y axis?",value=True,key="check2")
+    use_log_y = st.checkbox("Apply log on Y axis?",key="check2")
     fig = px.scatter(
         filtered_df2,
         x="category",
@@ -425,7 +425,7 @@ if st.checkbox("Show full dataset",key="box2"):
     st.write(filtered_df2)
 
 st.divider()
-st.header("🌎Countries with their number of awards",divider=True)
+st.header("🌎International Feature Film Winning Countries",divider=True)
 country_data = df1[(df1['canon_category']=="INTERNATIONAL FEATURE FILM")]
 country_data['award_status'] = country_data['winner'].map({True: 'Winner', False: 'Nominee'})
 # country_counts = country_data['name'].value_counts().reset_index()
