@@ -145,7 +145,10 @@ if option=="None":
             subfig1 = px.pie(bool_counts,values=bool_counts.values,names=bool_counts.index,title=f"Percentage of Winners and Not Winners",color_discrete_sequence=px.colors.sequential.Sunsetdark)
             col1.plotly_chart(subfig1,use_container_width=True)
 
+            
+
             winner_films = filter_data[filter_data["winner"]==True]
+            st.write(winner_films)
             movie_counts = winner_films['film'].value_counts().reset_index()
             movie_counts.columns = ['film','count']
             fig = px.bar(
@@ -157,6 +160,7 @@ if option=="None":
                 color='count',
                 color_continuous_scale='Viridis'
             )
+            
 
             # fig.update_layout(xaxis_tickangle=-45)  # Tilt x-axis labels if long
 
@@ -285,6 +289,7 @@ if plot_type == "Box Plot":
             filtered,
             x="category",
             y="Rating",
+            height=500,
             color="category",
             points="all",
             hover_data=["Title"],
@@ -298,6 +303,7 @@ else:
             filtered,
             x="category",
             y="Rating",
+            height=500,
             color="category",
             box=True,         # show embedded boxplot
             points="all",     # show all data points
@@ -311,29 +317,55 @@ else:
 fig.update_layout(yaxis_title="Rating")
 st.plotly_chart(fig, use_container_width=True)
 
+if st.checkbox("Show full dataset",key="box1"):
+    st.write(filtered)
+
 # st.markdown(f"### <em>\"The number of unique film winners : {writing_count}\"</em>", unsafe_allow_html=True)
 
 st.divider()
 st.header("💸Best Picture Winners Budget vs Box Office",divider=True)
 
 filtered_df2 = df2[(df2["Budget"]!=0)&(df2["Box Office"]!=0)]
-
+# filtered_df2 = filtered_df2[filtered_df2['category']=="picture"]
 # st.write(filtered_df2)
+tab1, tab2 = st.tabs(["Budget vs Revenue", "Category vs Budget"])
+with tab1:
+    fig = px.scatter(
+        filtered_df2,
+        x="Budget",
+        y="Box Office",
+        log_x=True,log_y=True,
+        size_max=40, 
+        size="Box Office",
+        color="category",
+        height=800,
+        hover_data=["Title"],  # optional: show movie names
+        title="Correlation between Movie Budget and Revenue",
+        labels={"Budget": "Budget ($)", "Box Office": "Revenue ($)"},
+        # trendline="ols"  # adds a linear regression line
+    )
+    fig.update_layout(
+        yaxis=dict(scaleanchor='y', scaleratio=1)
+    )
+    st.plotly_chart(fig, use_container_width=True)
 
-fig = px.scatter(
-    filtered_df2,
-    x="Budget",
-    y="Box Office",
-    log_x=True, log_y=True,
-    symbol="category",
-    color="category",
-    hover_data=["Title"],  # optional: show movie names
-    title="Correlation between Movie Budget and Revenue",
-    labels={"Budget": "Budget ($)", "Box Office": "Revenue ($)"},
-    # trendline="ols"  # adds a linear regression line
-)
-st.plotly_chart(fig, use_container_width=True)
-if st.checkbox("Show full dataset"):
+with tab2:
+    fig = px.scatter(
+        filtered_df2,
+        x="category",
+        y="Budget", 
+        size="Box Office",
+        color="Box Office",
+        height=800,
+        size_max=30,
+        hover_data=["Title"],  # optional: show movie names
+        title="Correlation between Movie Budget and Revenue",
+        labels={"category": "Category", "Budget": "Budget ($)"},
+        # trendline="ols"  # adds a linear regression line
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
+if st.checkbox("Show full dataset",key="box2"):
     st.write(filtered_df2)
 
 st.divider()
@@ -397,7 +429,7 @@ grouped['winner_pct'] = grouped['Winner'] / grouped['total']
 
 # st.plotly_chart(fig, use_container_width=True)
 fig = px.scatter_geo(grouped, locations="name",locationmode='country names', color="winner_pct",hover_data=['Winner', 'Nominee'],
-                     hover_name="name", size="total",size_max=60,
+                     hover_name="name", size="total",size_max=50,
                      projection="natural earth",color_continuous_scale='Jet',
                      title='Award Winners and Nominees by Country')
 fig.update_geos(
@@ -406,6 +438,6 @@ fig.update_geos(
 fig.update_layout(height=800)  # Increase height
 st.plotly_chart(fig, use_container_width=True)
 
-agree= st.checkbox("Show full dataset?")
+agree= st.checkbox("Show full dataset",key="box3")
 if agree:
      st.write(grouped)
