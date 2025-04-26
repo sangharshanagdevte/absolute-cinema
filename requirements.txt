@@ -7,3 +7,4 @@ python-dateutil
 statsmodels
 streamlit
 streamlit-plotly-events
+seaborn
