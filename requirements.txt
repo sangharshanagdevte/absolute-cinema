@@ -8,7 +8,6 @@ statsmodels
 streamlit
 streamlit-plotly-events
 seaborn
-re
 nltk
 sklearn
 joblib
