@@ -16,7 +16,7 @@ CUSTOM_STOPWORDS = set([
 ])
 
 # Load IMDB dataset for training
-df = pd.read_csv('archive/IMDB Dataset.csv')  # Use the relative path to the dataset
+df = pd.read_csv('archive/IMDB_Dataset.csv')  # Use the relative path to the dataset
 
 # Preview the data
 df.head()
