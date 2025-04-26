@@ -3,7 +3,13 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
-st.set_page_config(layout="wide")
+headline = 'Oscarlens - Absolute Cinema'
+
+st.set_page_config(
+    page_title=headline,
+    page_icon='🏆',
+    layout='wide',
+)
 # Background image with CSS trick
 st.markdown("""
     <style>
@@ -312,7 +318,7 @@ st.header("💸Best Picture Winners Budget vs Box Office",divider=True)
 
 filtered_df2 = df2[(df2["Budget"]!=0)&(df2["Box Office"]!=0)]
 
-st.write(filtered_df2)
+# st.write(filtered_df2)
 
 fig = px.scatter(
     filtered_df2,
@@ -391,8 +397,8 @@ grouped['winner_pct'] = grouped['Winner'] / grouped['total']
 
 # st.plotly_chart(fig, use_container_width=True)
 fig = px.scatter_geo(grouped, locations="name",locationmode='country names', color="winner_pct",hover_data=['Winner', 'Nominee'],
-                     hover_name="name", size="total",
-                     projection="natural earth",color_continuous_scale='Viridis',
+                     hover_name="name", size="total",size_max=60,
+                     projection="natural earth",color_continuous_scale='Jet',
                      title='Award Winners and Nominees by Country')
 fig.update_geos(
     showcountries=True
