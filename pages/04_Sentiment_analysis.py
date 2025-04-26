@@ -1,114 +1,114 @@
-# streamlit_app.py
-
-import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 import re
-import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
+import joblib
+import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.svm import LinearSVC
 from sklearn.metrics import accuracy_score
-from collections import Counter
-import plotly.express as px
-import joblib
-import warnings
-warnings.filterwarnings("ignore")
+import streamlit as st
 
-# Setup
-stop_words = set(stopwords.words('english'))
-stemmer = PorterStemmer()
+# Custom stopwords (optional, since TfidfVectorizer also handles this)
+CUSTOM_STOPWORDS = set([
+    "the", "and", "is", "in", "to", "of", "it", "this", "that", "was", "for",
+    "on", "with", "as", "but", "be", "at", "by", "an", "have", "not", "are"
+])
 
-# ---- Streamlit App ----
-st.set_page_config(layout="wide")
-st.title("🎬 Movie Review Sentiment Analyzer")
+# Load IMDB dataset for training
+df = pd.read_csv('../archive/IMDB_Dataset.csv')  # Use the relative path to the dataset
 
-# ---- Text Preprocessing ----
+# Preview the data
+df.head()
+
+# Clean the text data (remove unnecessary characters, punctuation, etc.)
 def clean_text(text):
     text = text.lower()
     text = re.sub('<br />', '', text)
-    text = re.sub(r"https\S+|www\S+|http\S+", '', text)
-    text = re.sub(r'\@w+|\#', '', text)
-    text = re.sub(r'[^\w\s]', '', text)
-    tokens = word_tokenize(text)
-    filtered = [stemmer.stem(w) for w in tokens if w not in stop_words]
+    text = re.sub(r'https?://\S+|www\.\S+', '', text)  # Remove URLs
+    text = re.sub(r'[^\w\s]', '', text)  # Remove punctuation
+    text = re.sub(r'\s+', ' ', text).strip()  # Normalize whitespace
+    tokens = text.split()
+    filtered = [w for w in tokens if w not in CUSTOM_STOPWORDS]
     return " ".join(filtered)
 
-def no_of_words(text):
-    return len(text.split())
+df['cleaned_review'] = df['review'].apply(clean_text)
 
-# ---- Load and preprocess dataset ----
-@st.cache_data
-def load_and_prepare_data():
-    df = pd.read_csv('../archive/IMDB_Dataset.csv')
-    df['sentiment'] = df['sentiment'].replace({'positive': 1, 'negative': 2})
-    df['review'] = df['review'].apply(clean_text)
-    df.drop_duplicates(subset='review', inplace=True)
-    df['word count'] = df['review'].apply(no_of_words)
-    return df
+# Convert sentiment labels to binary (positive = 1, negative = 0)
+df['sentiment'] = df['sentiment'].map({'positive': 1, 'negative': 0})
 
-# ---- Model Training (cached) ----
-@st.cache_resource
-def train_model(df):
-    X = df['review']
-    y = df['sentiment']
-    vect = TfidfVectorizer()
-    X_vect = vect.fit_transform(X)
-    x_train, x_test, y_train, y_test = train_test_split(X_vect, y, test_size=0.3, random_state=42)
-    model = LinearSVC()
-    model.fit(x_train, y_train)
-    acc = accuracy_score(model.predict(x_test), y_test)
+# Feature and target variable
+X = df['cleaned_review']
+y = df['sentiment']
 
-    # Save vectorizer and model for reuse
-    joblib.dump(vect, 'vectorizer.pkl')
-    joblib.dump(model, 'sentiment_model.pkl')
-    return model, vect, acc
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-# ---- Load everything ----
-df = load_and_prepare_data()
-model, vect, accuracy = train_model(df)
+# Convert the text data into a matrix of TF-IDF features
+vect = TfidfVectorizer()
+X_train_tfidf = vect.fit_transform(X_train)
+X_test_tfidf = vect.transform(X_test)
 
-# ---- Sidebar Info ----
+# Train a Linear Support Vector Classifier (SVC)
+model = LinearSVC()
+model.fit(X_train_tfidf, y_train)
+
+# Make predictions and evaluate the model
+y_pred = model.predict(X_test_tfidf)
+accuracy = accuracy_score(y_test, y_pred)
+print(f'Model Accuracy: {accuracy * 100:.2f}%')
+
+
+# Save the model and vectorizer for future use
+joblib.dump(vect, 'vectorizer.pkl')
+joblib.dump(model, 'sentiment_model.pkl')
+
+# Streamlit UI
+st.title("🎬 Movie Sentiment Analyzer")
+
+
+# Sidebar Accuracy Info
 st.sidebar.header("📊 Model Info")
-st.sidebar.write(f"LinearSVC Accuracy: **{accuracy * 100:.2f}%**")
-st.sidebar.write("Dataset size:", df.shape)
+st.sidebar.metric(label="Model Accuracy", value=f"{accuracy * 100:.2f}%")
 
-# ---- Review Analyzer ----
-st.subheader("💬 Try it Yourself: Sentiment Prediction")
-
-user_input = st.text_area("Enter a movie review below:", height=200)
+# Create a text area to get user input
+user_input = st.text_area("Enter a movie review:")
 
 if st.button("Analyze Sentiment"):
-    if user_input.strip() == "":
-        st.warning("Please enter a review.")
+    cleaned = clean_text(user_input)  # Clean the user input
+    vectorized_input = vect.transform([cleaned])  # Vectorize the input using the pre-trained vectorizer
+    prediction = model.predict(vectorized_input)  # Get the sentiment prediction
+
+    # Show sentiment result
+    if prediction == 1:
+        st.success("Positive Review 😊")
     else:
-        # Clean and predict
-        cleaned = clean_text(user_input)
-        vectorized = vect.transform([cleaned])
-        prediction = model.predict(vectorized)[0]
+        st.error("Negative Review 😞")
 
-        sentiment_label = "Positive 😊" if prediction == 1 else "Negative 😞"
-        st.subheader(f"Predicted Sentiment: **{sentiment_label}**")
+    # Generate a WordCloud for the review text
+    st.subheader("WordCloud of frequent words in your review:")
+    
+    wordcloud = WordCloud(width=800, height=400, stopwords=CUSTOM_STOPWORDS).generate(cleaned)
+    
+    plt.figure(figsize=(8, 8), facecolor=None)
+    plt.imshow(wordcloud, interpolation="bilinear")
+    plt.axis('off')
+    st.pyplot(plt)
 
-        # WordCloud
-        wc = WordCloud(max_words=200, width=800, height=400).generate(cleaned)
-        st.image(wc.to_array(), caption="🌀 Word Cloud of the Review")
-
-        # Bar Chart of Top Words
-        word_list = cleaned.split()
-        word_freq = Counter(word_list)
-        top_words_df = pd.DataFrame(word_freq.most_common(15), columns=["word", "count"])
-
-        st.plotly_chart(
-            px.bar(top_words_df, x="count", y="word", title="📌 Top Words in the Review", color="word"),
-            use_container_width=True
-        )
-
+    # Display top words from the review
+    words = cleaned.split()
+    word_freq = {}
+    
+    # Count word frequency
+    for word in words:
+        word_freq[word] = word_freq.get(word, 0) + 1
+    
+    # Sort by most common
+    sorted_word_freq = sorted(word_freq.items(), key=lambda x: x[1], reverse=True)
+    
+    # Display top words
+    st.subheader("Top words from the review:")
+    top_words = sorted_word_freq[:10]  # Show top 10 frequent words
+    for word, count in top_words:
+        st.write(f"{word}: {count}")
 
