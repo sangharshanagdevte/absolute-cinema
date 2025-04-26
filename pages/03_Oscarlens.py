@@ -148,24 +148,49 @@ if option=="None":
             
 
             winner_films = filter_data[filter_data["winner"]==True]
-            st.write(winner_films)
-            movie_counts = winner_films['film'].value_counts().reset_index()
-            movie_counts.columns = ['film','count']
-            fig = px.bar(
-                movie_counts,
-                x='count',
-                y='film',
-                title="Winning Films by Number of Appearances",
-                labels={'film': 'Film', 'count': 'Count'},
-                color='count',
-                color_continuous_scale='Viridis'
+            # st.write(winner_films)
+            # movie_counts = winner_films['film'].value_counts().reset_index()
+            # movie_counts.columns = ['film','count']
+            # fig1 = px.bar(
+            #     movie_counts,
+            #     x='count',
+            #     y='film',
+            #     title="Winning Films by Number of Appearances",
+            #     labels={'film': 'Film', 'count': 'Count'},
+            #     color='count',
+            #     color_continuous_scale='Viridis'
+            # )
+
+            award_counts = winner_films.groupby('film').size().reset_index(name='award_count')
+            award_lists = winner_films.groupby('film')['canon_category'].apply(list).reset_index(name='awards_list')
+
+            # Convert list of awards to HTML-formatted string with line breaks
+            award_lists['awards_formatted'] = award_lists['awards_list'].apply(
+                lambda awards: '<br>'.join(f"• {award}" for award in awards)
             )
+
+            # Merge
+            summary = pd.merge(award_counts, award_lists, on='film')
+            summary = summary.sort_values('award_count',ascending=False)
+            # Plot
+            fig2 = px.bar(summary, y='film', x='award_count', custom_data=['awards_formatted'],color='award_count',
+                color_continuous_scale='Viridis')
+
+            # Prettier hover
+            fig2.update_traces(
+                hovertemplate="<b>%{x}</b><br>" +
+                            "Total Awards: %{y}<br><br>" +
+                            "🏆 Awards:<br>%{customdata[0]}<extra></extra>"
+            )
+
+            fig2.update_layout(title="Oscar Awards Won by Movie")
             
 
             # fig.update_layout(xaxis_tickangle=-45)  # Tilt x-axis labels if long
 
             # Show in Streamlit
-            col2.plotly_chart(fig)
+            col2.plotly_chart(fig2)
+            # st.plotly_chart(fig1)
 
         with tab2:
             filter_data = df1[df1["year_ceremony"]==year]
@@ -219,19 +244,43 @@ else:
             col1.plotly_chart(subfig1,use_container_width=True)
 
             winner_films = filter_data[filter_data["winner"]==True]
-            movie_counts = winner_films['film'].value_counts().reset_index()
-            movie_counts.columns = ['film','count']
-            fig = px.bar(
-                movie_counts,
-                x='count',
-                y='film',
-                title="Winning Films by Number of Appearances",
-                labels={'film': 'Film', 'count': 'Count'},
-                color='count',
-                color_continuous_scale='Viridis'
-            )
+            # movie_counts = winner_films['film'].value_counts().reset_index()
+            # movie_counts.columns = ['film','count']
+            # fig = px.bar(
+            #     movie_counts,
+            #     x='count',
+            #     y='film',
+            #     title="Winning Films by Number of Appearances",
+            #     labels={'film': 'Film', 'count': 'Count'},
+            #     color='count',
+            #     color_continuous_scale='Viridis'
+            # )
 
             # fig.update_layout(xaxis_tickangle=-45)  # Tilt x-axis labels if long
+
+            award_counts = winner_films.groupby('film').size().reset_index(name='award_count')
+            award_lists = winner_films.groupby('film')['canon_category'].apply(list).reset_index(name='awards_list')
+
+            # Convert list of awards to HTML-formatted string with line breaks
+            award_lists['awards_formatted'] = award_lists['awards_list'].apply(
+                lambda awards: '<br>'.join(f"• {award}" for award in awards)
+            )
+
+            # Merge
+            summary = pd.merge(award_counts, award_lists, on='film')
+            summary = summary.sort_values('award_count',ascending=False)
+            # Plot
+            fig = px.bar(summary, y='film', x='award_count', custom_data=['awards_formatted'],color='award_count',
+                color_continuous_scale='Viridis')
+
+            # Prettier hover
+            fig.update_traces(
+                hovertemplate="<b>%{x}</b><br>" +
+                            "Total Awards: %{y}<br><br>" +
+                            "🏆 Awards:<br>%{customdata[0]}<extra></extra>"
+            )
+
+            fig.update_layout(title="Oscar Awards Won by Movie")
 
             # Show in Streamlit
             col2.plotly_chart(fig)
