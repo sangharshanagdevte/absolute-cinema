@@ -9,7 +9,7 @@ streamlit
 streamlit-plotly-events
 seaborn
 nltk
-sklearn
+scikit-learn
 joblib
 warnings
 collections
