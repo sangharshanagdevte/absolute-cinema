@@ -11,6 +11,5 @@ seaborn
 nltk
 scikit-learn
 joblib
-warnings
 collections
 wordcloud
