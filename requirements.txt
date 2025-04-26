@@ -10,5 +10,4 @@ streamlit-plotly-events
 seaborn
 scikit-learn
 joblib
-collections
 wordcloud
