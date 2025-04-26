@@ -377,13 +377,17 @@ st.header("💸Best Picture Winners Budget vs Box Office",divider=True)
 filtered_df2 = df2[(df2["Budget"]!=0)&(df2["Box Office"]!=0)]
 # filtered_df2 = filtered_df2[filtered_df2['category']=="picture"]
 # st.write(filtered_df2)
-tab1, tab2 = st.tabs(["Budget vs Revenue", "Category vs Budget"])
+filtered_df2["Profit"] = filtered_df2['Box Office'] - filtered_df2["Budget"]
+tab1, tab2 = st.tabs(["Budget vs Profit", "Category vs Budget"])
 with tab1:
+    col1,col2 = st.columns(2)
+    use_log_x = col1.checkbox("Apply log on X axis?",value=True)
+    use_log_y = col2.checkbox("Apply log on Y axis?",value=True,key="check1")
     fig = px.scatter(
         filtered_df2,
         x="Budget",
-        y="Box Office",
-        log_x=True,log_y=True,
+        y="Profit",
+        log_x=use_log_x,log_y=use_log_y,
         size_max=40, 
         size="Box Office",
         color="category",
@@ -393,18 +397,21 @@ with tab1:
         labels={"Budget": "Budget ($)", "Box Office": "Revenue ($)"},
         # trendline="ols"  # adds a linear regression line
     )
-    fig.update_layout(
-        yaxis=dict(scaleanchor='y', scaleratio=1)
-    )
+    
+    # fig.update_layout(
+    #     yaxis=dict(scaleanchor='y', scaleratio=1)
+    # )
     st.plotly_chart(fig, use_container_width=True)
 
 with tab2:
+    use_log_y = st.checkbox("Apply log on Y axis?",value=True,key="check2")
     fig = px.scatter(
         filtered_df2,
         x="category",
         y="Budget", 
+        log_y=use_log_y,
         size="Box Office",
-        color="Box Office",
+        color="Profit",
         height=800,
         size_max=30,
         hover_data=["Title"],  # optional: show movie names
