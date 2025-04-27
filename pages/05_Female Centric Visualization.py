@@ -28,7 +28,7 @@ def _embed_heading_and_tab_font():
         /* Apply Broadway to only the main title wrapper */
         #main-title h1 {{
             font-family: 'Broadway', sans-serif !important;
-            font-size: 72px !important;
+            font-size: 64px !important;
         }}
         #data-card {{
             background-color: #f0f2f6;
