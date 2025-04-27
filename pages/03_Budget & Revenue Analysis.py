@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import json
 import streamlit as st
-from streamlit_option_menu import option_menu
 import statsmodels.api as sm
 from statsmodels.stats.stattools import durbin_watson
 from statsmodels.stats.outliers_influence import summary_table
