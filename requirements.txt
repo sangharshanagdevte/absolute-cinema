@@ -18,6 +18,4 @@ sentence-transformers
 requests
 SPARQLWrapper
 urllib3
-statsmodels.stats.stattools
-statsmodels
 pymongo
