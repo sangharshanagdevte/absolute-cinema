@@ -20,4 +20,3 @@ SPARQLWrapper
 urllib3
 pymongo
 pycountry
-render_global_map
