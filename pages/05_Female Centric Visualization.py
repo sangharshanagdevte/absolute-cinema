@@ -14,7 +14,7 @@ st.set_page_config(layout="wide", page_title="Female-Centric Visualizations")
 
 # Embed Broadway font for main title & set tab font-size
 def _embed_heading_and_tab_font():
-    font_path = os.path.join(os.getcwd(), 'broadway-font', 'BROADWAY.ttf')
+    font_path = os.path.join(os.getcwd(),'female_centric', 'broadway-font', 'BROADWAY.ttf')
     try:
         with open(font_path, 'rb') as f:
             b64 = base64.b64encode(f.read()).decode()
