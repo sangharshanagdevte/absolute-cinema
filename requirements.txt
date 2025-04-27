@@ -12,3 +12,9 @@ scikit-learn
 joblib
 wordcloud
 networkx
+st-cytoscape
+diskcache
+sentence-transformers
+requests
+SPARQLWrapper
+urllib3
