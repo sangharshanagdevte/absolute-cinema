@@ -6,3 +6,4 @@ cache/
 img_cache/
 debug.log
 recommender/__pycache__/
+archive/
