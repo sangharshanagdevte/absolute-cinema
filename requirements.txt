@@ -21,5 +21,4 @@ urllib3
 pymongo
 pycountry
 umap
-hashlib
 scipy
