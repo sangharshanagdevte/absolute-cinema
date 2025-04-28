@@ -68,6 +68,7 @@ credits = [
     ("Sagar Kumar","24111060","UI Design & CSS Styling"),
     ("Krishanu Ray","24111037","Data Visualization Modules"),
     ("Uddeshya Raj","24111046","Sentiment Analysis Implementation"),
+    ("sangharsh nagdevte","241110064","Movie studio Dashboard"),
     ("Souravdip Das","23110051","Recommendation Engine"),
     ("Sayak Bera","24111068","Backend & Streamlit Integration"),
     ("Praveen Patel","24111004","Data Collection & ETL"),
