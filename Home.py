@@ -71,7 +71,7 @@ credits = [
     ("Souravdip Das","23110051","Recommendation Engine"),
     ("Sayak Bera","24111068","Backend & Streamlit Integration"),
     ("Praveen Patel","24111004","Data Collection & ETL"),
-    ("Srinjoy Srikan","23110050","Statistical Analysis & Reporting"),
+    ("Srinjoy Sarkar","231110050","Sentiment Analysis Implementation"),
 ]
 for name, roll, role in credits:
     card = f"""
