@@ -18,7 +18,7 @@ def get_base64(bin_file_path):
         data = f.read()
     return base64.b64encode(data).decode()
 
-bg_img = get_base64('c.jpeg')
+bg_img = get_base64('archive/c.jpeg')
 
 # Inject Global CSS
 st.markdown(f"""
