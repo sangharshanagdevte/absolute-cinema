@@ -1,8 +1,5 @@
 import streamlit as st
-import random
 import base64
-import os
-import pandas as pd
 from pathlib import Path
 
 # Page Config
@@ -15,9 +12,6 @@ st.set_page_config(
 
 # Base directories
 BASE_DIR = Path(__file__).resolve().parent
-DATA_DIR = BASE_DIR / "data"
-POSTERS_DIR = DATA_DIR / "posters"
-CSV_PATH = DATA_DIR / "movies.csv"
 
 # Utility: load binary as base64
 def get_base64(path: Path) -> str:
@@ -49,8 +43,6 @@ h2 {{ color:#FFD700; text-align:center; margin-bottom:1.25rem; }}
 .team-card:hover {{ background:rgba(255,255,255,0.15); transform:translateY(-8px); }}
 .team-card h4 {{ color:#00e6e6; margin-bottom:0.5rem; }}
 .team-card p {{ color:#FFD700; font-size:0.9375rem; }}
-.poster-container img {{ width:100%; border-radius:0.625rem; max-height:180px; object-fit:cover; transition:0.4s; }}
-.poster-container:hover img {{ transform:scale(1.05); box-shadow:0 6px 12px rgba(0,0,0,0.9); }}
 @keyframes fadeInUp {{ from {{ opacity:0; transform:translateY(30px); }} to {{ opacity:1; transform:translateY(0); }} }}
 </style>
 """
@@ -89,27 +81,6 @@ for name, roll, role in credits:
     """
     st.markdown(card, unsafe_allow_html=True)
 st.markdown("</div></div>", unsafe_allow_html=True)
-
-# Featured Films
-st.markdown("<div class='section'><h2>Featured Films</h2>", unsafe_allow_html=True)
-if not CSV_PATH.exists():
-    st.error(f"Missing file: {CSV_PATH}. Please commit 'data/movies.csv'.")
-else:
-    try:
-        df = pd.read_csv(CSV_PATH)
-    except Exception as e:
-        st.error(f"Error reading CSV: {e}")
-        df = pd.DataFrame()
-    if not df.empty and 'id' in df.columns:
-        movie_info = df.set_index('id').to_dict('index')
-        cols = st.columns(6)
-        sample = random.sample(list(movie_info), min(10, len(movie_info)))
-        for i, mid in enumerate(sample):
-            p = POSTERS_DIR / f"{mid}.jpg"
-            if p.exists():
-                img_html = f"<div class='poster-container'><img src='data:image/jpeg;base64,{get_base64(p)}'></div>"
-                with cols[i % 6]: st.markdown(img_html, unsafe_allow_html=True)
-st.markdown("</div></div>")
 
 # Footer text
 st.markdown("**Join us as we decode the secrets of cinematic success, shaping the future of storytelling.**")
