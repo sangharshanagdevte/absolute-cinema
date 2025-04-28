@@ -64,7 +64,7 @@ st.markdown(f"<div class='intro-text'>{intro}</div></div>", unsafe_allow_html=Tr
 # Team
 st.markdown("<div class='section'><h2>Meet Our Team</h2><div class='team-grid'>", unsafe_allow_html=True)
 credits = [
-    ("Pushpesh Kumar Srivastava","24111045","Data Cleaning & Preprocessing"),
+    ("Puspesh Kumar Srivastava","241110405","Female Centric Visualization Dashboard"),
     ("Sagar Kumar","24111060","UI Design & CSS Styling"),
     ("Krishanu Ray","24111037","Data Visualization Modules"),
     ("Uddeshya Raj","24111046","Sentiment Analysis Implementation"),
