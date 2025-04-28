@@ -26,7 +26,7 @@ st.set_page_config(
     page_title="🎬 Film Cultural Impact Explorer",
     layout="wide"
 )
-DATA_DIR = Path("data")
+DATA_DIR = Path("archive")
 CACHE_DIR = Path(".cache")
 CACHE_DIR.mkdir(exist_ok=True)
 
