@@ -65,12 +65,12 @@ st.markdown(f"<div class='intro-text'>{intro}</div></div>", unsafe_allow_html=Tr
 st.markdown("<div class='section'><h2>Meet Our Team</h2><div class='team-grid'>", unsafe_allow_html=True)
 credits = [
     ("Puspesh Kumar Srivastava","241110405","Female Centric Visualization Dashboard"),
-    ("Sagar Kumar","24111060","UI Design & CSS Styling"),
-    ("Krishanu Ray","24111037","Data Visualization Modules"),
-    ("Uddeshya Raj","24111046","Sentiment Analysis Implementation"),
+    ("Sagar Kumar","241110060","UI Design & CSS Styling"),
+    ("Krishanu Ray","241110037","Data Visualization Modules"),
+    ("Uddeshya Raj","241110046","Sentiment Analysis Implementation"),
     ("sangharsh nagdevte","241110064","Movie studio Dashboard"),
     ("Souravdip Das","23110051","Recommendation Engine"),
-    ("Sayak Bera","24111068","Backend & Streamlit Integration"),
+    ("Sayak Bera","241110068","Backend & Streamlit Integration"),
     ("Praveen Patel","24111004","Data Collection & ETL"),
     ("Srinjoy Sarkar","231110050","Sentiment Analysis Implementation"),
 ]
