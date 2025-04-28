@@ -3,6 +3,7 @@ import random
 import base64
 import os
 import pandas as pd
+from pathlib import Path
 
 # Page Config
 st.set_page_config(
@@ -12,13 +13,26 @@ st.set_page_config(
     initial_sidebar_state='expanded',
 )
 
+# Determine base directory (where this script lives)
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
+POSTERS_DIR = DATA_DIR / "posters"
+CSV_PATH = DATA_DIR / "movies.csv"
+
 # Background image load
-def get_base64(bin_file_path):
-    with open(bin_file_path, 'rb') as f:
+def get_base64(bin_file_path: Path):
+    with bin_file_path.open('rb') as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
-bg_img = get_base64('archive/c.jpeg')
+# Load background image
+bg_file = BASE_DIR / 'archive' / 'c.jpeg'
+if not bg_file.exists():
+    st.warning(f"Background image not found at {bg_file}."
+               " Please ensure 'archive/c.jpeg' is in your repo.")
+    bg_img = ""
+else:
+    bg_img = get_base64(bg_file)
 
 # Inject Global CSS
 st.markdown(f"""
@@ -136,9 +150,10 @@ h2 {{
 # Top Navbar
 st.markdown("<div class='navbar'><h1>Absolute Cinema 🎥</h1></div>", unsafe_allow_html=True)
 
-# Main Content
+# Main Content Container
 st.markdown("<div class='container'>", unsafe_allow_html=True)
 
+# Introduction Section
 st.markdown("<div class='section'>", unsafe_allow_html=True)
 st.markdown("<h2>Behind the Scenes of Movie Industry</h2>", unsafe_allow_html=True)
 intro = """
@@ -152,7 +167,6 @@ st.markdown("</div>", unsafe_allow_html=True)
 # Project Team Section
 st.markdown("<div class='section'>", unsafe_allow_html=True)
 st.markdown("<h2>Meet Our Team</h2>", unsafe_allow_html=True)
-
 credits = [
     ("Pushpesh Kumar Srivastava", "24111045", "Data Cleaning & Preprocessing"),
     ("Sagar Kumar", "24111060", "UI Design & CSS Styling"),
@@ -163,7 +177,6 @@ credits = [
     ("Praveen Patel", "24111004", "Data Collection & ETL"),
     ("Srinjoy Srikan", "23110050", "Statistical Analysis & Reporting"),
 ]
-
 st.markdown("<div class='team-grid'>", unsafe_allow_html=True)
 for name, roll, role in credits:
     st.markdown(f"""
@@ -180,22 +193,27 @@ st.markdown("</div>", unsafe_allow_html=True)
 st.markdown("<div class='section'>", unsafe_allow_html=True)
 st.markdown("<h2>Featured Films</h2>", unsafe_allow_html=True)
 
-df = pd.read_csv("data/movies.csv")
-movie_info = df.set_index('id').to_dict(orient='index')
-cols = st.columns(6)
-for idx, movie_id in enumerate(random.sample(list(movie_info.keys()), 10)):
-    path = f"data/posters/{movie_id}.jpg"
-    if os.path.exists(path):
-        with cols[idx % 6]:
-            with open(path, "rb") as pf:
-                img_b64 = base64.b64encode(pf.read()).decode()
-            st.markdown(f"<div class='poster-container'><img src='data:image/jpeg;base64,{img_b64}'></div>", unsafe_allow_html=True)
+# Load CSV if exists, else show error
+if not CSV_PATH.exists():
+    st.error(f"Could not find data file at {CSV_PATH}.\nPlease ensure 'data/movies.csv' is present in your repo.")
+else:
+    df = pd.read_csv(CSV_PATH)
+    movie_info = df.set_index('id').to_dict(orient='index')
+    cols = st.columns(6)
+    sample_ids = random.sample(list(movie_info.keys()), min(10, len(movie_info)))
+    for idx, movie_id in enumerate(sample_ids):
+        poster_path = POSTERS_DIR / f"{movie_id}.jpg"
+        if poster_path.exists():
+            with cols[idx % 6]:
+                img_b64 = get_base64(poster_path)
+                st.markdown(f"<div class='poster-container'><img src='data:image/jpeg;base64,{img_b64}'></div>", unsafe_allow_html=True)
 
 st.markdown("</div>", unsafe_allow_html=True)
 
-st.markdown("</div>", unsafe_allow_html=True)  # End container
+# Closing Container
+st.markdown("</div>", unsafe_allow_html=True)
 
-# TODO: Homepage components
+# Footer note
 st.markdown("""
 **Join us as we decode the secrets of musical success, shaping the future of music creation and engagement.**
 """, unsafe_allow_html=False)
