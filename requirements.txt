@@ -20,6 +20,5 @@ SPARQLWrapper
 urllib3
 pymongo
 pycountry
-umap-learn
-TSNE
-DBSCAN
+umap
+hashlib
