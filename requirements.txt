@@ -24,4 +24,3 @@ umap
 scipy
 umap-learn-0.5.3
 google-images-search
-UMAP
